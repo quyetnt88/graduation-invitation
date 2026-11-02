@@ -132,6 +132,49 @@
   box-shadow: none;
 }
 
+.secret-stamp {
+  position: absolute;
+  right: 4%;
+  top: 7%;
+  z-index: 3;
+  padding: 3px 10px;
+  border: 2.5px double #b3262e;
+  border-radius: 6px;
+  color: #b3262e;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(0.7rem, 3.2vw, 0.9rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: rotate(-12deg);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.envelope-sender {
+  position: absolute;
+  left: 7%;
+  bottom: 8%;
+  z-index: 3;
+  font-family: var(--font-script);
+  font-size: clamp(0.95rem, 4vw, 1.15rem);
+  color: #7a5a12;
+  pointer-events: none;
+}
+
+.seal.wiggle {
+  animation: seal-wiggle 3.5s ease-in-out infinite;
+}
+
+/* Idle most of the cycle, then a quick wiggle to invite a tap */
+@keyframes seal-wiggle {
+  0%, 80%, 100% { transform: rotate(0) scale(1); }
+  84% { transform: rotate(-12deg) scale(1.08); }
+  88% { transform: rotate(10deg) scale(1.08); }
+  92% { transform: rotate(-6deg) scale(1.04); }
+  96% { transform: rotate(3deg) scale(1); }
+}
+
 .secret-badge {
   margin: 0;
   padding: 6px 14px;
@@ -249,8 +292,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.9; }
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 /* ---------- Layout ---------- */
@@ -753,6 +796,23 @@
     max-width: 520px;
     position: static;
     max-height: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .envelope-screen {
+    gap: 16px;
+  }
+  .envelope {
+    width: min(260px, 75vw);
+  }
+  .seal {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+  .secret-badge {
+    font-size: 0.72rem;
   }
 }
 

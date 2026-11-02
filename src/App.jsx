@@ -17,6 +17,7 @@ export default function App() {
       {!opened ? (
         <Envelope
           guest={guest}
+          sender={defaultInfo.graduateName.split(' ').at(-1)}
           onGuestChange={setGuest}
           onOpen={() => {
             track('open', { name: guest.trim() })

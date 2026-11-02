@@ -15,8 +15,18 @@ const SCAN_STEPS = [
 ]
 const STEP_MS = 1100
 
-export default function Envelope({ guest, onGuestChange, onOpen }) {
+// Placeholder rotates through these while the input is empty
+const PLACEHOLDERS = [
+  'Tên bạn là gì nè? 👀',
+  'VD: Bạn thân nhất của Quyết',
+  'VD: Người hay cho chép bài',
+  'VD: Đồng đội chạy deadline',
+]
+const PLACEHOLDER_MS = 2500
+
+export default function Envelope({ guest, sender, onGuestChange, onOpen }) {
   const [step, setStep] = useState(-1)
+  const [placeholderIndex, setPlaceholderIndex] = useState(0)
   const [shake, setShake] = useState(false)
   const [error, setError] = useState('')
   const [badTries, setBadTries] = useState(0)
@@ -32,6 +42,12 @@ export default function Envelope({ guest, onGuestChange, onOpen }) {
     }, verified ? 1600 : STEP_MS)
     return () => clearTimeout(id)
   }, [step, scanning, verified, onOpen])
+
+  useEffect(() => {
+    if (guest || scanning) return
+    const id = setInterval(() => setPlaceholderIndex((i) => (i + 1) % PLACEHOLDERS.length), PLACEHOLDER_MS)
+    return () => clearInterval(id)
+  }, [guest, scanning])
 
   const reject = (message) => {
     setError(message)
@@ -66,8 +82,12 @@ export default function Envelope({ guest, onGuestChange, onOpen }) {
       <button className={`envelope ${scanning ? 'is-scanning' : ''}`} onClick={startScan} aria-label="Mở thiệp">
         <div className="envelope-flap" />
         <div className="envelope-body">
-          <div className="seal">{verified ? '✅' : '🎓'}</div>
+          <div className={`seal ${scanning ? '' : 'wiggle'}`}>{verified ? '✅' : '🎓'}</div>
         </div>
+        <span className="secret-stamp" aria-hidden="true">
+          Tuyệt mật
+        </span>
+        {sender && <span className="envelope-sender">Từ: Tân cử nhân {sender} 🎓</span>}
         {scanning && !verified && <div className="scan-line" />}
       </button>
 
@@ -83,7 +103,7 @@ export default function Envelope({ guest, onGuestChange, onOpen }) {
                 onGuestChange(e.target.value)
                 setError('')
               }}
-              placeholder="Nhập tên thật nha, hệ thống biết hết đó 👀"
+              placeholder={PLACEHOLDERS[placeholderIndex]}
               autoComplete="off"
               maxLength={60}
               aria-invalid={!!error}
@@ -99,7 +119,7 @@ export default function Envelope({ guest, onGuestChange, onOpen }) {
               Xác minh &amp; mở khóa 🔓
             </button>
           </form>
-          <p className="envelope-hint">Hệ thống sẽ kiểm tra bạn có trong danh sách khách mời không 🕵️</p>
+          <p className="envelope-hint">Chỉ khách VIP mới mở được thiệp 🕵️</p>
         </>
       ) : (
         <div className="scan-panel" role="status" aria-live="polite">

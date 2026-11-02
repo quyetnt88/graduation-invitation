@@ -13,7 +13,8 @@ const SCAN_STEPS = [
   { icon: '📋', text: 'Đang đối chiếu danh sách khách mời...' },
   { icon: '🎉', text: 'Đang trải thảm đỏ chào đón bạn...' },
 ]
-const STEP_MS = 1100
+const STEP_MS = 350
+const VERIFIED_MS = 700
 
 // Placeholder rotates through these while the input is empty
 const PLACEHOLDERS = [
@@ -39,7 +40,7 @@ export default function Envelope({ guest, sender, onGuestChange, onOpen }) {
     const id = setTimeout(() => {
       if (verified) onOpen()
       else setStep((s) => s + 1)
-    }, verified ? 1600 : STEP_MS)
+    }, verified ? VERIFIED_MS : STEP_MS)
     return () => clearTimeout(id)
   }, [step, scanning, verified, onOpen])
 

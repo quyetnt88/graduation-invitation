@@ -202,7 +202,7 @@
   z-index: 4;
   background: #4ade80;
   box-shadow: 0 0 16px 4px #4ade80aa;
-  animation: scan 1.1s ease-in-out infinite alternate;
+  animation: scan 0.35s ease-in-out infinite alternate;
 }
 
 @keyframes scan {
@@ -331,7 +331,7 @@
   border-radius: 6px;
   padding: 14px;
   box-shadow: 0 30px 60px #000a;
-  animation: reveal 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: reveal 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @keyframes reveal {
@@ -782,6 +782,62 @@
   to {
     transform: translateY(110vh) rotate(720deg);
     opacity: 0.2;
+  }
+}
+
+/* ---------- Side cannons ---------- */
+.cannons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.cannon-piece {
+  position: absolute;
+  bottom: -12px;
+  width: var(--size);
+  height: calc(var(--size) * 0.45);
+  border-radius: 2px;
+  opacity: 0;
+  animation-name: cannon-shot;
+  animation-timing-function: cubic-bezier(0.15, 0.6, 0.35, 1);
+  animation-fill-mode: forwards;
+  will-change: transform, opacity;
+}
+
+.cannon-piece.left {
+  left: -8px;
+}
+
+.cannon-piece.right {
+  right: -8px;
+}
+
+.cannon-piece.emoji {
+  width: auto;
+  height: auto;
+  background: none !important;
+  font-size: 1.6rem;
+  line-height: 1;
+  /* Softer than the confetti so the icons stay in the background */
+  --peak: 0.45;
+}
+
+/* Shoot up and inward, then drift down and fade */
+@keyframes cannon-shot {
+  0% {
+    opacity: var(--peak, 1);
+    transform: translate(0, 0) rotate(0);
+  }
+  55% {
+    opacity: var(--peak, 1);
+    transform: translate(var(--dx), var(--dy)) rotate(calc(var(--spin) * 0.6));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--dx) * 1.25), calc(var(--dy) + 30vh)) rotate(var(--spin));
   }
 }
 

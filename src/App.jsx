@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Envelope from './components/Envelope.jsx'
 import InvitationCard from './components/InvitationCard.jsx'
 import Confetti from './components/Confetti.jsx'
+import SideCannons from './components/SideCannons.jsx'
 import { defaultInfo } from './data/defaultInfo.js'
 import { track } from './utils/track.js'
 import './App.css'
@@ -27,6 +28,7 @@ export default function App() {
       ) : (
         <>
           <Confetti />
+          <SideCannons />
           <main className="stage">
             <InvitationCard info={defaultInfo} guest={guest} />
             <button className="close-btn" onClick={() => setOpened(false)}>

@@ -1,0 +1,38 @@
+:root {
+  --navy: #0b1d3a;
+  --navy-2: #13294f;
+  --gold: #d4af37;
+  --gold-light: #f3e5ab;
+  --cream: #fffaf0;
+  --ink: #1e2a3d;
+  --muted: #6b7280;
+  --font-script: 'Dancing Script', cursive;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Be Vietnam Pro', system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: radial-gradient(ellipse at top, var(--navy-2), var(--navy) 70%);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}

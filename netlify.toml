@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+# Local: `npx netlify dev` runs Vite + the functions together on http://localhost:8888
+[dev]
+  command = "npm run dev"
+  targetPort = 5173
+  port = 8888
+
+# /thongke is rendered by the same index.html (a catch-all "/*" would also swallow Vite's dev modules)
+[[redirects]]
+  from = "/thongke"
+  to = "/index.html"
+  status = 200

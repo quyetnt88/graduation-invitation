@@ -318,6 +318,7 @@
 
 .is-capturing .card-right .graduate-name {
   font-size: 3.7rem;
+  white-space: nowrap;
 }
 
 .is-capturing .card-right .divider {

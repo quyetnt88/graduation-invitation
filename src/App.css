@@ -337,7 +337,7 @@
 }
 
 .capture-offscreen .card-capture {
-  width: 860px;
+  width: 940px;
 }
 
 .is-capturing .no-capture {
@@ -350,8 +350,9 @@
 
 /* Without the countdown/map the details column is shorter, so for the picture
    the photo shrinks a little and the text breathes more to keep both columns even */
+/* Picture is 940 x ~575 (1880 x 1150 at 2x), the proportions that look best in chat apps */
 .is-capturing .photo-arch {
-  width: 172px;
+  width: 215px;
 }
 
 .is-capturing .card-right .graduate-name {
@@ -361,15 +362,7 @@
 
 .is-capturing .card-right .school {
   margin-bottom: 30px;
-  gap: 10px;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
   white-space: nowrap;
-}
-
-.is-capturing .card-right .school::before,
-.is-capturing .card-right .school::after {
-  flex-basis: 22px;
 }
 
 .is-capturing .card-right .venue {
@@ -384,12 +377,8 @@
 
 /* Tighter top/bottom inside the frame so the picture has less empty space */
 .is-capturing .card-border {
-  padding: 26px 32px 22px;
-  column-gap: 28px;
-}
-
-.is-capturing .card-left {
-  padding-right: 24px;
+  padding-top: 26px;
+  padding-bottom: 22px;
 }
 
 .is-capturing .card-footer {

@@ -337,7 +337,7 @@
 }
 
 .capture-offscreen .card-capture {
-  width: 940px;
+  width: 860px;
 }
 
 .is-capturing .no-capture {
@@ -351,7 +351,7 @@
 /* Without the countdown/map the details column is shorter, so for the picture
    the photo shrinks a little and the text breathes more to keep both columns even */
 .is-capturing .photo-arch {
-  width: 215px;
+  width: 172px;
 }
 
 .is-capturing .card-right .graduate-name {
@@ -359,22 +359,41 @@
   white-space: nowrap;
 }
 
-.is-capturing .card-right .divider {
-  margin: 22px 0;
+.is-capturing .card-right .school {
+  margin-bottom: 30px;
+  gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+.is-capturing .card-right .school::before,
+.is-capturing .card-right .school::after {
+  flex-basis: 22px;
 }
 
 .is-capturing .card-right .venue {
-  margin: 24px 0 8px;
+  margin: 30px 0 8px;
 }
 
 .is-capturing .card-right .message {
   max-width: none;
-  margin: 22px 0 8px;
+  margin: 16px 0 12px;
   font-size: 0.95rem;
 }
 
+/* Tighter top/bottom inside the frame so the picture has less empty space */
+.is-capturing .card-border {
+  padding: 26px 32px 22px;
+  column-gap: 28px;
+}
+
+.is-capturing .card-left {
+  padding-right: 24px;
+}
+
 .is-capturing .card-footer {
-  margin-top: 4px;
+  margin-top: 12px;
 }
 
 .share-bar {
@@ -621,30 +640,30 @@
   }
 }
 
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 22px 0;
-  color: var(--gold);
-}
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+/* The school line's gold rules already separate the name from the details below */
+.card-right .school {
+  margin-bottom: 24px;
 }
 
 .date-block {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  /* stretch so both side boxes share the same height and their gold rules line up */
+  align-items: stretch;
   gap: 12px;
   font-family: var(--font-serif);
 }
 
+.date-main {
+  align-self: center;
+}
+
 .date-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   border-top: 1px solid var(--gold);
   border-bottom: 1px solid var(--gold);
   padding: 8px 4px;
@@ -690,6 +709,7 @@
   margin: 4px 0 8px;
   font-size: 0.85rem;
   color: var(--muted);
+  text-wrap: balance;
 }
 
 .map-link {
@@ -1024,8 +1044,8 @@
   .card-right .graduate-name {
     margin-top: 0;
   }
-  .card-right .divider {
-    margin: 16px 0;
+  .card-right .school {
+    margin-bottom: 20px;
   }
   .card-right .venue {
     margin: 16px 0 6px;

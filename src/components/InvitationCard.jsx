@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Countdown from './Countdown.jsx'
 import FrogGrad from './FrogGrad.jsx'
+import GradCap from './GradCap.jsx'
 import inviteImg from '../assets/grad-invite.jpg'
 import campusImg from '../assets/unnamed.webp'
 import { track } from '../utils/track.js'
@@ -94,7 +95,9 @@ export default function InvitationCard({ info, guest, interactive = true }) {
         {/* Two columns on wide screens (invite + photo | details), stacked on phones */}
         <div className="card-left">
           <header className="card-header">
-            <div className="cap">🎓</div>
+            <div className="cap">
+              <GradCap size={46} />
+            </div>
             <p className="eyebrow">Thân mời</p>
             <p className="guest">{guest || 'Bạn'}</p>
             <p className="eyebrow">đến dự lễ tốt nghiệp của</p>
@@ -111,10 +114,6 @@ export default function InvitationCard({ info, guest, interactive = true }) {
         <div className="card-right">
           <h1 className="graduate-name">{info.graduateName}</h1>
           <p className="school">{info.school}</p>
-
-          <div className="divider">
-            <span>✦</span>
-          </div>
 
           <section className="date-block">
             <div className="date-side">{weekday}</div>
@@ -138,7 +137,13 @@ export default function InvitationCard({ info, guest, interactive = true }) {
 
           <section className="venue">
             <p className="venue-name">{info.venue}</p>
-            <p className="venue-address">{info.address}</p>
+            {/* Only break after commas, so names like "Tăng Nhơn Phú" never split across lines */}
+            <p className="venue-address">
+              {info.address
+                .split(', ')
+                .map((part) => part.replace(/ /g, ' '))
+                .join(', ')}
+            </p>
             {info.mapUrl && (
               <a className="map-link no-capture" href={info.mapUrl} target="_blank" rel="noreferrer">
                 📍 Xem bản đồ

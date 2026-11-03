@@ -11,8 +11,9 @@ function getRemaining(target) {
   }
 }
 
-export default function Countdown({ date, time }) {
+export default function Countdown({ date, time, endTime }) {
   const target = new Date(`${date}T${time || '00:00'}`).getTime()
+  const end = new Date(`${date}T${endTime || '23:59'}`).getTime()
   const [left, setLeft] = useState(() => getRemaining(target))
 
   useEffect(() => {
@@ -22,7 +23,15 @@ export default function Countdown({ date, time }) {
   }, [target])
 
   if (Number.isNaN(target)) return null
-  if (left.done) return <p className="countdown-done">🎉 Hôm nay là ngày trọng đại!</p>
+  // During the ceremony vs. after it, so the card never keeps saying "today" once the day has passed
+  if (left.done) {
+    const over = Date.now() > end
+    return (
+      <p className="countdown-done no-capture">
+        {over ? '💛 Cảm ơn mọi người đã đến chung vui!' : '🎉 Buổi lễ đang diễn ra, hẹn gặp nhau nhé!'}
+      </p>
+    )
+  }
 
   const units = [
     ['Ngày', left.days],
@@ -32,7 +41,7 @@ export default function Countdown({ date, time }) {
   ]
 
   return (
-    <div className="countdown">
+    <div className="countdown no-capture">
       {units.map(([label, value]) => (
         <div className="countdown-item" key={label}>
           <span className="countdown-value">{String(value).padStart(2, '0')}</span>

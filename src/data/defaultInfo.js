@@ -6,9 +6,10 @@ export const defaultInfo = {
   time: '08:00',
   endTime: '13:00',
   venue: 'Đại học FPT',
-  address: 'Lô E2a-7, Đường D1, Khu Công nghệ cao, Phường Tăng Nhơn Phú, Ho Chi Minh City',
+  address: 'Lô E2a-7, Đường D1, Khu Công nghệ cao, Phường Tăng Nhơn Phú, TP. Hồ Chí Minh',
+  // {you}/{me} are swapped for the right pronouns from the guest's name (see utils/pronouns.js)
   message:
-    'Sau những năm tháng miệt mài trên giảng đường, mình rất vui được chia sẻ khoảnh khắc đáng nhớ này. Sự hiện diện của bạn là niềm vinh hạnh lớn đối với mình!',
-  phone: '0354532977',
+    'Một chặng đường khép lại, một hành trình mới bắt đầu. Sự hiện diện của {you} là niềm vinh hạnh của chúng tôi!',
+  phone: '0354 532 977',
   mapUrl: 'https://maps.google.com/?q=Truong+Dai+hoc+FPT+TP.+Ho+Chi+Minh',
 }

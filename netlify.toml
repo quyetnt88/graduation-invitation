@@ -16,3 +16,8 @@
   from = "/thongke"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/taothiep"
+  to = "/index.html"
+  status = 200

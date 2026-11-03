@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Every few seconds, two "party cannons" fire confetti and graduation caps from the bottom corners
 const INTERVAL_MS = 2000
 const LIFETIME_MS = 2600
 const PIECES_PER_SIDE = 14
 const COLORS = ['#d4af37', '#f3e5ab', '#ffffff', '#c9a227', '#8fb3ff', '#b3262e']
-const EMOJIS = ['🎓', '🎓', '📜', '⭐', '🎉']
+const EMOJIS = ['🎓', '🎓', '🐸', '📜', '⭐', '🎉']
 
 const rand = (min, max) => min + Math.random() * (max - min)
 
@@ -35,14 +35,15 @@ function makeBurst(id) {
 
 export default function SideCannons() {
   const [bursts, setBursts] = useState([])
+  // Kept across effect re-runs (StrictMode) so burst keys never repeat
+  const nextId = useRef(0)
 
   useEffect(() => {
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
 
-    let next = 0
     const fire = () => {
       if (document.hidden) return
-      const burst = makeBurst(next++)
+      const burst = makeBurst(nextId.current++)
       setBursts((list) => [...list, burst])
       setTimeout(() => setBursts((list) => list.filter((b) => b.id !== burst.id)), LIFETIME_MS + 300)
     }

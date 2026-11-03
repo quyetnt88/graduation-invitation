@@ -1,8 +1,5 @@
 // Fonts are bundled with the site (not loaded from Google Fonts) so the downloaded
 // invitation image can always embed them. Only the subsets Vietnamese text needs.
-import '@fontsource/be-vietnam-pro/latin-300.css'
-import '@fontsource/be-vietnam-pro/latin-ext-300.css'
-import '@fontsource/be-vietnam-pro/vietnamese-300.css'
 import '@fontsource/be-vietnam-pro/latin-400.css'
 import '@fontsource/be-vietnam-pro/latin-ext-400.css'
 import '@fontsource/be-vietnam-pro/vietnamese-400.css'

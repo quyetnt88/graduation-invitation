@@ -1,17 +1,32 @@
-# React + Vite
+# Thiệp mời tốt nghiệp
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Thiệp mời tốt nghiệp online (React + Vite), deploy trên Netlify.
 
-Currently, two official plugins are available:
+## Các trang
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Đường dẫn | Dành cho | Nội dung |
+|---|---|---|
+| `/` | Khách | Nhập tên ở phong bì → mở thiệp, trả lời "sẽ đến". Link `/?to=Tên` điền sẵn tên |
+| `/taothiep` | Chủ thiệp | Nhập tên khách → copy link mời hoặc tải thiệp dạng ảnh PNG |
+| `/thongke` | Chủ thiệp | Danh sách khách đã mở thiệp / đồng ý (cần mật khẩu) |
 
-## React Compiler
+## Chỉnh nội dung
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Tên, ngày giờ, địa điểm, lời nhắn nằm trong `src/data/defaultInfo.js`.
+Lời nhắn dùng `{you}` / `{me}` để tự đổi xưng hô theo tên khách (anh, chị, em, thầy, cô...) — xem `src/utils/pronouns.js`.
 
-## Expanding the Oxlint configuration
+## Chạy trên máy
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-# graduation-invitation
+```bash
+npm install
+npm run dev          # chỉ giao diện
+npx netlify-cli dev  # giao diện + thống kê (http://localhost:8888)
+```
+
+Mật khẩu `/thongke` khi chạy trên máy đặt trong file `.env` (`STATS_PASSWORD=...`, không commit).
+
+## Deploy (Netlify)
+
+- Kết nối repo với Netlify — cấu hình build có sẵn trong `netlify.toml`.
+- Thêm biến môi trường `STATS_PASSWORD` (mật khẩu trang thống kê).
+- Dữ liệu thống kê lưu bằng Netlify Blobs, có giới hạn chống spam trong `netlify/functions`.

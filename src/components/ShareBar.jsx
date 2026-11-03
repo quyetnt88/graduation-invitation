@@ -21,6 +21,7 @@ const CARD_FONTS = [
   '400 1em "Be Vietnam Pro"',
   'italic 400 1em "Be Vietnam Pro"',
   '500 1em "Be Vietnam Pro"',
+  '600 1em "Be Vietnam Pro"',
 ]
 
 async function copyText(text) {

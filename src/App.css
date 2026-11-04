@@ -430,6 +430,29 @@
   color: var(--navy);
 }
 
+/* Guest page: download + close buttons under the card */
+.guest-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.download-btn {
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.download-btn:hover {
+  background: var(--gold-light);
+}
+
+.download-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 /* ---------- Card ---------- */
 .card {
   width: 100%;
